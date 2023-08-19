@@ -25,6 +25,7 @@ class Test_Project:
       self.wait = WebDriverWait(self.driver, 20)
       yield
       self.driver.close()
+ # Login page Validation Positive test case     
    def test_login(self,setup):
       try:
         self.driver.get(data.Data().url)
@@ -40,13 +41,12 @@ class Test_Project:
            print('Invalid Credential {a}'.format(a=data.Data().invalid_password))
       except TimeoutException as e:
          print(e)
+         
+ # Negative test case with invalid password
 
-
-   def test_Negative_case(self,setup):
+   def test_Negative_case(self,setup): 
        try:
-
            self.driver.get(data.Data().url)
-
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().Make_appointment))).click()
            before_url = self.driver.current_url
            self.wait.until(EC.presence_of_element_located((By.XPATH, locators.Locators().username))).send_keys(data.Data().username)
@@ -61,16 +61,14 @@ class Test_Project:
            print(e)
    def test_validation(self,setup):
        try:
-
            self.driver.get(data.Data().url)
-
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().Make_appointment))).click()
            self.wait.until(EC.presence_of_element_located((By.XPATH, locators.Locators().username))).send_keys(
                data.Data().username)
            self.wait.until(EC.presence_of_element_located((By.XPATH, locators.Locators().password))).send_keys(
                data.Data().password)
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().login_btn))).click()
-
+ # Appointment booking validation
            dropdown = Select(self.driver.find_element(By.XPATH, locators.Locators().select))
            dropdown.select_by_value("Seoul CURA Healthcare Center")
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().check_box))).click()
@@ -85,21 +83,18 @@ class Test_Project:
                print("Appointment Booked !!")
            else:
                print('Invalid Credentials!!')
-
-           # After booking Navigate to home page
+# After booking Navigate to home page
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().home_page))).click()
            current_url_page = self.driver.current_url
            if current_url_page == "https://katalon-demo-cura.herokuapp.com/":
                print("Navigate to Home Page ")
 
-           # History option validation
-
        except TimeoutException as e:
            print(e)
-   def test_side_menu(self,setup):
+#Validation of Side menu in Home page           
+   def test_side_menu(self,setup):  
        try:
            self.driver.get(data.Data().url)
-
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().Make_appointment))).click()
            self.wait.until(EC.presence_of_element_located((By.XPATH, locators.Locators().username))).send_keys(
                data.Data().username)
@@ -107,6 +102,7 @@ class Test_Project:
                data.Data().password)
            self.wait.until(EC.element_to_be_clickable((By.XPATH, locators.Locators().login_btn))).click()
            self.wait.until(EC.element_to_be_clickable((By.XPATH,locators.Locators().menu))).click()
+# Validating using For loop
            menu = self.wait.until(EC.visibility_of_element_located((By.XPATH,locators.Locators().elememt)))
            list_element = menu.find_elements(By.TAG_NAME,locators.Locators.li_ele)
            for expected in data.Data().menu:
