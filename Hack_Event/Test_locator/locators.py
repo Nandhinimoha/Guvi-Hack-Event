@@ -1,0 +1,18 @@
+class Locators:
+        Make_appointment = "//a[@id='btn-make-appointment']"
+        username = "//input[@id='txt-username']"
+        password = "//*[@id='txt-password']"
+        login_btn = "//button[@id='btn-login']"
+        date = "//input[@id='txt_visit_date']"
+        select = '//*[@id="combo_facility"]'
+        check_box = "//input[@id='chk_hospotal_readmission']"
+        book_appointment = "//button[@id='btn-book-appointment']"
+        comments = "//textarea[@id='txt_comment']"
+        health_Care ="//input[@id='radio_program_medicaid']"
+        confirm ="h2"
+        menu ="//*[@id='menu-toggle']"
+        home_page="//*[@id='summary']/div/div/div[7]/p/a"
+        elememt ="//*[@id='sidebar-wrapper']/ul"
+        li_ele = "li"
+        history ="//*[@id='sidebar-wrapper']/ul/li[3]/a"
+        valid_his = "History"
